@@ -12,27 +12,49 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
-    <style type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
       body {
-        background: #f1f1f1;
-
+        background: #000000; 
+        color:white;
       }
+
+      .card {
+        background:linear-gradient(-45deg, #000000, #8aff37, #0d190b);
+        background-size: 300% 300%;
+        animation: moveGradient 20s ease infinite;
+        text-shadow:2px 2px 5px black;
+}
+
+@keyframes moveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+      .archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
     </style>
   </head>
   <body>
-    <div class="container my-5 mx-auto" style="max-width: 500px;">
-      <h1 class="h1 mb-4 text-center">Login</h1>
+    <div class="container my-5 mx-auto archivo-black-regular " style="max-width: 500px;">
+      <h1 class="h1 mb-4 text-center">Welcome Back!</h1>
 
       <div class="card p-4">
         <form method="POST" action="login.php">
-          <div class="mb-2">
-            <label for="email" class="visually-hidden">Email</label>
-        <input type="username" class="form-control" id="username" name="username" placeholder="username" required>
+          <div class="mb-3">
+            <label for="username">Username</label>
+        <input type="username" class="form-control" id="username" name="username" required>
        
           </div>
-          <div class="mb-2">
-            <label for="password" class="visually-hidden">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+          <div class="mb-3">
+            <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary">Login</button>

@@ -1,6 +1,10 @@
 <?php
-    $db = new PDO("mysql:host=localhost;dbname=project", "root", "");
-$query =  "SELECT 
+session_start();
+$db = new PDO("mysql:host=localhost;dbname=project", "root", "");
+
+$UserId = $_SESSION['user']['id'];
+
+$query = "SELECT 
     orders.id AS orders_id,
     orders.purchase_date,
     orders.address,
@@ -13,13 +17,16 @@ FROM project.orders
 LEFT JOIN users 
        ON users.id = orders.order_by
 LEFT JOIN cd 
-       ON cd.id = orders.cd_id;";
+       ON cd.id = orders.cd_id
+WHERE orders.order_by = :user_id";
+
+$stmt = $db->prepare($query);
+$stmt->execute([':user_id' => $UserId]);
+$orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-    $stmt = $db->prepare($query);
-$stmt->execute();
-$order = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -48,27 +55,29 @@ $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <thead>
           <tr>
             <th scope="col">Order ID</th>
-            <th scope="col" style="width: 5%;">Username</th>
+            <th scope="col" >Username</th>
             <th scope="col" style="width: 40%;">CD Name</th>
             <th scope="col" style="width: 10%;">Purchase Date</th>
           </tr>
         </thead>
         <tbody>
 
-<?php foreach($order as $orders): ?>
+<?php foreach($orders as $order): ?>
     <tr>
-        <th scope="row"><?=$orders['orders_id'] ?></th>
-        <td><?= $orders['users_username'] ?></td>
-        <td><?= $orders['cd_name'] ?></td>
-        <td><?= $orders['purchase_date'] ?></td>
+        <th scope="row"><?= $order['orders_id'] ?></th>
+        <td><?= $order['users_username'] ?></td>
+        <td><?= $order['cd_name'] ?></td>
+        <td><?= $order['purchase_date'] ?></td>
     </tr>
 <?php endforeach; ?>
+
+
 </tbody>
 
       </table>
     </div>
-        </div>
-
+      
+<a href="dashboard.php">  <i class="bi bi-arrow-right-circle"></i> Go Back to dashboard</a>
        
 </body>
 </html>

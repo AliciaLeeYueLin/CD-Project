@@ -12,7 +12,9 @@ require('header.php');
         rel="stylesheet">
     <link rel="stylesheet" 
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <style>
         body{
             overflow-x:hidden;
@@ -99,43 +101,208 @@ require('header.php');
  font-size:20px
    
 }
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.cd-shape1 {
+  width: 300px;
+  height: 300px;
+  border-radius: 0%;
+  background: url("image/cd1.png");
+  background-size: cover;       
+  background-position: center; 
+  position: relative;
+}
+.cd-shape2 {
+  width: 380px;
+  height: 380px;
+  border-radius: 0%;
+  background: url("image/cd2.jpg");
+  background-size: cover;       
+  background-position: center; 
+  position: relative;
+}
+.cd-shape3 {
+  width: 300px;
+  height: 300px;
+  border-radius: 0%;
+  background: url("image/cd3.png");
+  background-size: cover;       
+  background-position: center; 
+  position: relative;
+}
+
+
+.inner2 {
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+.inner1 {
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+
+    @keyframes cycle {
+  0%   { border-radius: 0%; transform: rotate(0deg); }
+  10%  { border-radius: 50%; }    
+  90%  { border-radius: 50%; transform: rotate(540deg); }
+  100% { border-radius: 0%; transform: rotate(720deg); } 
+}
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes fadeIn2 {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+#startText h5{
+margin: 0;
+ 
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6); 
+  background: rgba(0,0,0,0.4);             
+  padding: 8px 16px;
+  border-radius: 8px;
+  
+}
+    .animate {
+     animation: cycle 16s linear;
+     }
+    .animate .inner1 {
+      animation: fadeIn 16s forwards;
+    }
+    .animate .inner2 {
+      animation: fadeIn2 16s forwards;
+    }
+  .animate #startText{
+    animation: none;
+  opacity:0;
+  }
     </style>
 </head>
 <body>
-            <h1 class="text-center mt-5 d-flex justify-content-center align-items-center">Top tier of June</h1>
+            <h1 class="text-center mt-5 d-flex justify-content-center align-items-center archivo-black-regular" style="font-size:50px;">Top tier of June</h1>
 
-    <div class="row g-4">
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
-            <div class="flex-column d-flex "style="margin-top: 50px;">
-                <img src="silver-medal.png" alt="" width="80px">
-                <div><img src="image/cd1.png" alt="" width="300px"></div>
-                <h1 class="d-flex justify-content-center">Starboy</h1>
-                <h2 class="d-flex justify-content-center">The weekend</h2>
-            </div>
+ 
+  <div class="row g-4 archivo-black-regular">
+    <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+      <div class="flex-column d-flex" style="margin-top: 50px;">
+        <img src="silver-medal.png" alt="" width="80px">
+        <div id="cd" class="cd-shape1">
+          <span id="startText" style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+          "><h5>Click to listen</h5></span>
+          <div class="inner1"></div>
         </div>
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
-            <div class="flex-column d-flex justify-content-center" style="margin-top: 50px;">
-                <img src="quality.png" alt="" width="80px">
-                <div><img src="image/cd2.jpg" alt="" width="380px"></div>
-                <h1 class="d-flex justify-content-center">NFR</h1>
-                <h2 class="d-flex justify-content-center">Lana Del Rey</h2>
-            </div>
-        </div>
-        <div class="col-12 col-lg-4  d-flex justify-content-center align-items-center">
-            <div class="flex-column" style="margin-top: 50px;">
-                <img src="medal.png" alt="" width="80px">
-                <div><img src="image/cd3.png" alt="" width="300px"></div>
-                <h1 class="d-flex justify-content-center">Mayhem</h1>
-                <h2 class="d-flex justify-content-center">Lady Gaga</h2>
-            </div>
-        </div>
-        
+        <h1 class="d-flex justify-content-center mt-3">Starboy</h1>
+        <h2 class="d-flex justify-content-center mt-3">The Weekend</h2>
+      </div>
     </div>
-      <div class="row g-4">
-             
 
+    <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+      <div class="flex-column d-flex" style="margin-top: 50px;">
+
+        <div id="cd2" class="cd-shape2">
+          <span id="startText2" style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+          "><h5>Click to listen</h5></span>
+          <div class="inner2"></div>
+        </div>
+        <h1 class="d-flex justify-content-center mt-3">NFR</h1>
+        <h2 class="d-flex justify-content-center mt-3">Lana Del Rey</h2>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+      <div class="flex-column d-flex" style="margin-top: 50px;">
+
+        <div id="cd3" class="cd-shape3">
+          <span id="startText3" style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+          "><h5>Click to listen</h5></span>
+          <div class="inner1"></div>
+        </div>
+        <h1 class="d-flex justify-content-center mt-3">NFR</h1>
+        <h2 class="d-flex justify-content-center mt-3">Lana Del Rey</h2>
+      </div>
+    </div>
+       
+       <script>
+     document.getElementById("startText").addEventListener("click", function() {
+      document.getElementById("cd").classList.toggle("animate"); 
+    });
+  </script>
+       <script>
+     document.getElementById("startText2").addEventListener("click", function() {
+      document.getElementById("cd2").classList.toggle("animate"); 
+    });
+  </script>
+       <script>
+     document.getElementById("startText3").addEventListener("click", function() {
+      document.getElementById("cd3").classList.toggle("animate"); 
+    });
+  </script>
+    </div>
       
-   <div class="col-6 col-lg-4 d-flex justify-content-center align-items-center">
+       <div class="row g-4">
+   <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="cd-manage.php">
     <button class="cssbuttons-io-button">
      Start shopping now!
@@ -146,7 +313,6 @@ require('header.php');
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
-      
       <path d="M0 0h24v24H0z" fill="none"></path>
       <path
         d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
@@ -158,10 +324,8 @@ require('header.php');
 </a>
 </div>
 
-
-
-    <?php if ($_SESSION['user']['role']=="admin"): ?>
-        <div class="col-6 col-lg-4 d-flex justify-content-center align-items-center">
+<?php if ($_SESSION['user']['role']=="admin"): ?>
+        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="artist-manage.php">
     <button class="cssbuttons-io-button">
      Manage type
@@ -183,15 +347,35 @@ require('header.php');
 </button>
 </a>
      </div>   
-       </div>   
  <?php endif; ?>
     <?php if ($_SESSION['user']['role']=="admin"): ?>
 
-        <div class="col-6 col-lg-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="types-manage.php">
       <div class="btn btn-primary">
    <i class="bi bi-list"></i>
    <h4>Type Manage</h4>
+    </div>
+       </div>   
+             <?php endif; ?>
+
+    <?php if ($_SESSION['user']['role']=="admin"): ?>
+
+        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+    <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="order-manage.php">
+      <div class="btn btn-primary">
+   <i class="bi bi-list"></i>
+   <h4>Type Manage</h4>
+    </div>
+       </div>   
+             <?php endif; ?>
+    <?php if ($_SESSION['user']['role']=="user"): ?>
+
+        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+    <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="order-history.php">
+      <div class="btn btn-primary">
+   <i class="bi bi-list"></i>
+   <h4>Order Manage</h4>
     </div>
        </div>   
              <?php endif; ?>

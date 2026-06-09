@@ -31,7 +31,7 @@ $cd = $cdStmt->fetch(PDO::FETCH_ASSOC);;
   <!-- <p>You are ordering: <strong><?php echo ($cd['name']); ?></strong> 
      (RM <?php echo ($cd['price']); ?>)</p> -->
 
-  <form method="POST" action="order-sucess.php">
+  <form method="POST" action="order-success.php">
     <input type="hidden" name="cd_id" value="<?php echo htmlspecialchars($cdId); ?>">
 
     <div class="mb-3">
