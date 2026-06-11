@@ -8,6 +8,9 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
     body{
        
@@ -25,10 +28,19 @@
         color: white;
        
     }
+    .merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
 </style>
 </head>
 <body>
-     <div class="container my-5 mx-auto" style="max-width: 500px;">
+    <div class="merriweather">
+     <div class="container my-5 mx-auto " style="max-width: 500px;">
      <h1 class="h1 mb-4 text-center"  style="text-shadow:2px 2px 2px black" ; >Sign up a New Account</h1>
 
     <div class="card p-4">
@@ -59,6 +71,6 @@
             </button>
     </form>
  </div>
-
+</div>
 </body>
 </html>

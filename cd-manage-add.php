@@ -49,13 +49,21 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
     />
     <style type="text/css">
       body {
-        background: #F1F1F1;
+        background: #c5f0ff80;
       }
+      .merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
     </style>
   </head>
   <body>
 
-    <div class="container mx-auto my-5" style="max-width: 700px;">
+    <div class="container merriweather mx-auto my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h1 class="h1">Add New CD</h1>
       </div>
@@ -64,6 +72,11 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
           <div class="mb-3">
             <label for="cd_name" class="form-label">CD Name</label>
             <input type="text" class="form-control" id="cd_name" name="cd_name" />
+          </div>
+
+          <div class="mb-3">
+            <label for="cd_image" class="form-label">CD IMG</label>
+            <input type="text" class="form-control" id="cd_image" name="cd_image" />
           </div>
 
           <div class="mb-3">
@@ -97,7 +110,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
         </form>
       </div>
       <div class="text-center">
-        <a href="cd-manage-add.php" class="btn btn-link btn-sm"
+        <a href="cd-manage.php" class="btn btn-link btn-sm"
           ><i class="bi bi-arrow-left"></i> Back to CD</a
         >
       </div>

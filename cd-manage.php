@@ -59,6 +59,9 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <style>
         .navbar{
             background-color:gray;
@@ -68,6 +71,16 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
   flex-direction: column;
   justify-content: space-between;
 }
+.card {
+  border: 12px solid #000000;               
+  border-radius: 10px;          
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;     
+  overflow: hidden;             
+       
+}
+
        .buyyy{
         display:flex;
         margin-top:auto;
@@ -109,7 +122,93 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
   float: right;
   cursor: pointer;
 }
+.navbar {
+  background: linear-gradient(90deg, #57d8eb, #000c40);
+}
 
+.btn {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+   .archivo-black-regular {
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-image: linear-gradient(to top, #30cceb 0%, #330867 100%);
+  border: solid 3px transparent;
+  background-clip: padding-box;
+  box-shadow: 0px 0px 0px 3px #ffffff00;
+  color: white;
+  min-height: 43px;
+  padding: 0 13px 0 13px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .5s ease;
+  text-decoration:none
+}
+
+button:active {
+  transform: scale(.9);
+  transition: all 100s ease;
+}
+
+button:hover {
+  box-shadow: 0px 0px 0px 3px #30a1b8;
+}
+
+button svg {
+  width: 16px;
+}
+.merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.btn-corner {
+  position: fixed; 
+  bottom: 30px;      
+  right: 30px;      
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width:60px;
+  height:60px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-corner:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn{
+  width:40px;
+   height:40px; 
+   border-radius:50%;
+    border:2px #809dd4 solid; 
+    color: #809dd4;
+}
     </style>
      <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -122,84 +221,89 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
 </head>
+ <div class="merriweather">
 <body>
-    <section> 
+ 
+   <section> 
      <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid  p-1">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <h1 class="navbar-brand p-1">CD</h1>
+                <h1 class="navbar-brand text-white p-1">CD</h1>
                 <div class="collapse navbar-collapse" id="navbarNav">
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <form method="GET" action="" class="d-flex ">
+             <form method="GET" action="" class="d-flex ">
         <input class="form-control me-2"  style="width:800px;" type="search" name="search" placeholder="Search CDs or Artists" aria-label="Search">
-        <div class="btn" type="submit"; style="width:40px; height:40px; border-radius:50%; border:2px blue solid; color:blue;"><i class="bi bi-search"></i></div>
+        <button class="btn" type="submit"><i class="bi bi-search"></i></div>
         </form>
-        </div>          
-        
-           
-<button onclick="togglePopup()" class="btn btn-light">
-  <i class="bi bi-toggles2"></i>
-</button>
-
-<!-- Popup box -->
-<div id="topPopup" class="popup-box">
-  <div class="popup-content">
-    <button class="close-btn" onclick="togglePopup()">&times;</button>
-    <h5>Filter Options</h5>
-    <?php foreach ($types as $type): ?>
-      <label>
-        <input type="checkbox" name="type_id[]" value="<?= $type['id'] ?>">
-        <?= htmlspecialchars($type['name']) ?>
-      </label><br>
-    <?php endforeach; ?>
-    <button type="submit" class="btn btn-primary mt-2">Apply Filters</button>
-  </div>
-</div>
-
-               
-<script>
-function togglePopup() {
-  const popup = document.getElementById("topPopup");
-  popup.style.display = (popup.style.display === "block") ? "none" : "block";
-}
-</script>
-
-
-        <a href="cd-manage-add.php"><div class="btn">+</div></a>
-        <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link ps-2" href="http://localhost/project/cd-manage.php/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link p-2" href="#education">Shop</a></li>
-                        <li class="nav-item"><a class="nav-link p-2" href="#about">Register</a></li>
-                        <li class="nav-item"><a class="nav-link p-2" href="#about">Log in</a></li>
+</button>  
+        <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link ps-2 text-white" href="index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="dashboard.php">Dashboard</a></li>
+                          <?php if ($_SESSION['user']['role']=="user"): ?>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="order-history.php">Order History</a></li>
+                        <?php endif; ?>
+                          <?php if ($_SESSION['user']['role']=="admin"): ?>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="order-manage.php">Order Manage</a></li>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="types-manage.php">Type Manage</a></li>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="artist-manage.php">Artist Manage</a></li>
+                        <?php endif; ?>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="logout.php">Log Out</a></li>
                         
                     </ul>
                 </div>
             </div>
-            
+        </div>
     </nav>
     
      </section>
    
-        <div class="row g-4 playfair-display d-flex justify-content-center  mt-5">
- <?php foreach($cd as $cds): ?>
-  <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center ">
-<div class="card" style="width: 18rem; height:35rem;">
-  <img class="card-img-top d-flex justify-content-center" src="<?= htmlspecialchars($cds['cd_image']) ?>" alt="Card image cap" width="200px">
-  <div class="card-body"> 
-    <h1 class="card-title d-flex justify-content-start"><i class="bi bi-tag-fill"></i><?= $cds['cd_price'] ?></h1>
-    <h1 class="card-title d-flex justify-content-start"></i><?= $cds['cd_name'] ?></h1>
-    <p class="card-text d-flex justify-content-start"></i><?= $cds['artist_name'] ?> || </i><?= $cds['type_name'] ?></p>
-    
-    <div class="buyyy">
-                    <a href="order-form.php?id=<?= $cds['id'] ?>" class=" btn btn-primary">Buy Now</a> 
-                    <a href="cd-manage-update.php?id=<?= $cds['id'] ?>" class="btn btn-success btn-sm me-2"><i class="bi bi-pencil"></i></a>
-                    </div>
-  </div>
+   
+    <div class="row g-4 playfair-display d-flex justify-content-center mt-5">
+  <?php foreach($cd as $cds): ?>
+    <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
+      <div class="card" style="width: 21rem; height:38rem;">
+        <img class="card-img-top d-flex justify-content-center" 
+             src="<?= $cds['cd_image'] ?>" 
+             alt="Card image cap" width="200px">
+        <div class="card-body"> 
+          <h1 class="card-title d-flex justify-content-start">
+            <i class="bi bi-tag-fill"></i><?= $cds['cd_price'] ?>
+          </h1>
+          <h1 class="card-title d-flex justify-content-start">
+            <?= $cds['cd_name'] ?>
+          </h1>
+          <p class="card-text d-flex justify-content-start">
+            <?= $cds['artist_name'] ?> || <?= $cds['type_name'] ?>
+          </p>
+
+          <div class="buyyy">
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === "user"): ?>
+              <a href="order-form.php?id=<?= $cds['id'] ?>" class="btn btn-primary">Buy Now</a>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === "admin"): ?>
+              <a href="cd-manage-update.php?id=<?= $cds['id'] ?>">
+                <button>
+                  <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#FFFFFF" height="24" width="24" viewBox="0 0 24 24">
+                      <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                  </svg>
+                    Edit
+                </button>
+              </a>
+            <?php endif; ?>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <?php endforeach; ?>
 </div>
-</div>
- <?php endforeach; ?>
- </div>
+<a href="cd-manage-add.php">
+ <button class="btn-corner">
+  <i class="bi bi-plus">
+</button>
+</a>
 </body>
 </html>

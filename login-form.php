@@ -33,19 +33,23 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-      .archivo-black-regular {
-  font-family: "Archivo Black", sans-serif;
-  font-weight: 400;
+.merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
     </style>
   </head>
   <body>
-    <div class="container my-5 mx-auto archivo-black-regular " style="max-width: 500px;">
+     <div class="container my-5 mx-auto merriweather " style="max-width: 500px;">
       <h1 class="h1 mb-4 text-center">Welcome Back!</h1>
 
       <div class="card p-4">
+      
         <form method="POST" action="login.php">
           <div class="mb-3">
             <label for="username">Username</label>
@@ -66,10 +70,10 @@
       <div
         class="d-flex justify-content-between align-items-center gap-3 mx-auto pt-3"
       >
-        <a href="index.html" class="text-decoration-none small"
+        <a href="index.php" class="text-decoration-none small"
           ><i class="bi bi-arrow-left-circle"></i> Go back</a
         >
-        <a href="signup.html" class="text-decoration-none small"
+        <a href="registration-form.php" class="text-decoration-none small"
           >Don't have an account? Sign up here
           <i class="bi bi-arrow-right-circle"></i
         ></a>

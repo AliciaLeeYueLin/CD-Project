@@ -15,9 +15,11 @@ require('header.php');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
     <style>
         body{
-            overflow-x:hidden;
+          overflow-x:none;
+          padding-top: 60px;
         }
      
 .cssbuttons-io-button {
@@ -91,8 +93,7 @@ require('header.php');
 }
 .btn-primary h4{
   display:none;
-    margin: 0; 
-   diplay:none;         
+    margin: 0;    
     transition:transform 1.5s ease;
     white-space:nowrap;
 }
@@ -106,10 +107,14 @@ require('header.php');
   font-weight: 400;
   font-style: normal;
 }
-.archivo-black-regular {
-  font-family: "Archivo Black", sans-serif;
-  font-weight: 400;
+
+.merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
   font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 .cd-shape1 {
   width: 300px;
@@ -211,10 +216,44 @@ margin: 0;
     animation: none;
   opacity:0;
   }
+  .navbar {
+  background: linear-gradient(90deg, #30cceb 0%, #330867 100%);
+  text-shadow: 2px 2px 3px black;
+}
     </style>
 </head>
 <body>
-            <h1 class="text-center mt-5 d-flex justify-content-center align-items-center archivo-black-regular" style="font-size:50px;">Top tier of June</h1>
+  <section> 
+     <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container-fluid  p-1">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <h1 class="navbar-brand text-white p-1">CD</h1>
+                <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+ 
+        <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link ps-2 text-white" href="index.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="dashboard.php">Dashboard</a></li>
+                          <?php if ($_SESSION['user']['role']=="user"): ?>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="order-history.php">Order History</a></li>
+                        <?php endif; ?>
+                          <?php if ($_SESSION['user']['role']=="admin"): ?>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="order-manage.php">Order Manage</a></li>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="types-manage.php">Type Manage</a></li>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="artist-manage.php">Artist Manage</a></li>
+                        <?php endif; ?>
+                        <li class="nav-item"><a class="nav-link p-2 text-white" href="logout.php">Log Out</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+     </section>
+            <h1 class="text-center mt-5 d-flex justify-content-center align-items-center merriweather" style="font-size:50px;">- Top tier of June -</h1>
 
  
   <div class="row g-4 archivo-black-regular">
@@ -302,7 +341,7 @@ margin: 0;
     </div>
       
        <div class="row g-4">
-   <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+   <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="cd-manage.php">
     <button class="cssbuttons-io-button">
      Start shopping now!
@@ -325,7 +364,7 @@ margin: 0;
 </div>
 
 <?php if ($_SESSION['user']['role']=="admin"): ?>
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="artist-manage.php">
     <button class="cssbuttons-io-button">
      Manage type
@@ -350,7 +389,7 @@ margin: 0;
  <?php endif; ?>
     <?php if ($_SESSION['user']['role']=="admin"): ?>
 
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="types-manage.php">
       <div class="btn btn-primary">
    <i class="bi bi-list"></i>
@@ -361,7 +400,7 @@ margin: 0;
 
     <?php if ($_SESSION['user']['role']=="admin"): ?>
 
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="order-manage.php">
       <div class="btn btn-primary">
    <i class="bi bi-list"></i>
@@ -371,7 +410,7 @@ margin: 0;
              <?php endif; ?>
     <?php if ($_SESSION['user']['role']=="user"): ?>
 
-        <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center">
     <a style="text-decoration:none;" class="mt-5 d-flex justify-content-center align-items-center" href="order-history.php">
       <div class="btn btn-primary">
    <i class="bi bi-list"></i>

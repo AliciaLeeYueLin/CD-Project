@@ -12,7 +12,7 @@ if(isset($_POST['name']) ){
     $stmt->execute([
         ":name"=>$name
     ]);
-    header("Location: artists-manage.php");
+    header("Location: artist-manage.php");
 }
 
 ?>
@@ -39,7 +39,7 @@ if(isset($_POST['name']) ){
   <body>
     <div class="container mx-auto my-5" style="max-width: 700px;">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="h1">Add New Post</h1>
+        <h1 class="h1">Add New Artist</h1>
       </div>
       <div class="card mb-2 p-4">
         <form method="POST" >
@@ -49,12 +49,12 @@ if(isset($_POST['name']) ){
           </div>
         <input type="hidden" name="post_by" value="1">
           <div class="text-end">
-            <button type="submit" class="btn btn-primary">Add</button>
+            <a href="artist-manage.php"><button type="submit" class="btn btn-primary">Add</button></a>
           </div>
         </form>
       </div>
       <div class="text-center">
-        <a href="artists-manage.php" class="btn btn-link btn-sm"
+        <a href="artist-manage.php" class="btn btn-link btn-sm"
           ><i class="bi bi-arrow-left"></i> Back to Posts</a
         >
       </div>

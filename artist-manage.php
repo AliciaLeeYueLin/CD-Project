@@ -3,7 +3,7 @@ require('header.php');
 if(isset($_POST['id'])){
   $id = $_POST['id'];
 
-  $stmt = $db->prepare();
+  $stmt = $db->prepare("DELETE FROM artists WHERE id = :id");
   $stmt->execute([":id"=>$id]);
 }
 
@@ -29,25 +29,39 @@ $artists = $stmt->fetchAll();
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
   <style type="text/css">
     body {
-      background: #f1f1f1;
+      background: #ffffff;
+    
     }
+   
+    .merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
   </style>
 </head>
 
 <body>
-  <div class="container mx-auto my-5" style="max-width: 700px;">
+
+  <div class="container mx-auto my-5 merriweather" style="max-width: 450px;">
     <div class="d-flex justify-content-between align-items-center mb-2">
-      <h1 class="h1">Manage Posts</h1>
+      <h1 class="h1">Manage Artist</h1>
       <div class="text-end">
-        <a href="artists-manage-add.php" class="btn btn-primary btn-sm">+ Add New Type</a>
+        <a href="artist-manage-add.php" class="btn btn-primary btn-sm">+ Add New Artist</a>
       </div>
     </div>
     <div class="card mb-2 p-3">
-      <table class="table">
+      <table class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col" style="width: 40%;">Type</th>
+            <th scope="col" width="70px">ID</th>
+            <th scope="col" width="300px">Type</th>
+            <th scope="col" width="80px"></th>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +69,13 @@ $artists = $stmt->fetchAll();
                 <tr>
                     <th scope="row"><?= $type['id'] ?></th>
                     <td><?= $type['name'] ?></td>
-                        
+                    <td>
+                      <a href="artist-manage-update.php?id= <?= $type['id'] ?>"></a>
+                      <form method="POST" action="" style="display:inline;">
+                        <input type="hidden" name="id" value="<?= $type['id'] ?>">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                      </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -64,6 +84,7 @@ $artists = $stmt->fetchAll();
         <div class="text-center">
         <a href="dashboard.php" class="btn btn-link btn-sm"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
         </div>
+       
  </div>
 
   <script

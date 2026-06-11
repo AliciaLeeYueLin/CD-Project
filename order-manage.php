@@ -38,19 +38,28 @@ $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
     body {
       background: #f1f1f1;
     }
+       .merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
   </style>
 </head>
 
 <body>
-   
+   <div class="merriweather">
       <div class="card mb-2 p-3">
-      <table class="table">
+      <table class="table table-striped table-hover table-bordered">
+
         <thead>
           <tr>
-            <th scope="col">Order ID</th>
+            <th scope="col" style="width: 2%;">Order ID</th>
             <th scope="col" style="width: 5%;">Username</th>
-            <th scope="col" style="width: 40%;">CD Name</th>
-            <th scope="col" style="width: 10%;">Purchase Date</th>
+            <th scope="col" style="width: 20%;">CD Name <i class="bi bi-disc"></th>
+            <th scope="col" style="width: 10%;">Purchase Date <i class="bi bi-calendar"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -58,9 +67,9 @@ $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php foreach($order as $orders): ?>
     <tr>
         <th scope="row"><?=$orders['orders_id'] ?></th>
-        <td><?= $orders['users_username'] ?></td>
-        <td><?= $orders['cd_name'] ?></td>
-        <td><?= $orders['purchase_date'] ?></td>
+        <td><i class="bi bi-person"></i><?= $orders['users_username'] ?></td>
+        <td></i> <?= $orders['cd_name'] ?></td>
+        <td><?= date("d M Y", strtotime($orders['purchase_date'])) ?></td>
     </tr>
 <?php endforeach; ?>
 </tbody>
@@ -69,6 +78,6 @@ $order = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
         </div>
 
-       
+      </div>
 </body>
 </html>

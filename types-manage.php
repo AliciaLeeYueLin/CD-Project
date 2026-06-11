@@ -33,11 +33,22 @@ $types = $stmt->fetchAll();
     body {
       background: #f1f1f1;
     }
+    .merriweather {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
   </style>
 </head>
 
 <body>
-  <div class="container mx-auto my-5" style="max-width: 700px;">
+  <div class="merriweather">
+   
+  
+  <div class="container mx-auto my-5" style="max-width: 450px;">
     <div class="d-flex justify-content-between align-items-center mb-2">
       <h1 class="h1">Manage Posts</h1>
       <div class="text-end">
@@ -45,11 +56,11 @@ $types = $stmt->fetchAll();
       </div>
     </div>
     <div class="card mb-2 p-3">
-      <table class="table">
+      <table class="table table-striped table-hover table-bordered">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col" style="width: 40%;">Type</th>
+            <th scope="col" width="70px">ID</th>
+            <th scope="col" width="380px">Type</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +78,7 @@ $types = $stmt->fetchAll();
         <a href="dashboard.php" class="btn btn-link btn-sm"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
         </div>
  </div>
-
+</div>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

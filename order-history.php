@@ -51,7 +51,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
    
       <div class="card mb-2 p-3">
-      <table class="table">
+      <table class="table table table-striped table-hover table-bordered">
         <thead>
           <tr>
             <th scope="col">Order ID</th>
@@ -65,9 +65,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php foreach($orders as $order): ?>
     <tr>
         <th scope="row"><?= $order['orders_id'] ?></th>
-        <td><?= $order['users_username'] ?></td>
+        <td><i class="bi bi-person"></i><?= $order['users_username'] ?></td>
         <td><?= $order['cd_name'] ?></td>
-        <td><?= $order['purchase_date'] ?></td>
+       <td><?= $order['purchase_date']?></td>
     </tr>
 <?php endforeach; ?>
 
