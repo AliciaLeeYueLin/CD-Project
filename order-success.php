@@ -86,9 +86,20 @@ function submit_page($message, $icon = "bi-check-circle") {
 </html>';
     exit;
 }
+$userId = $_SESSION['user']['id'];
 
+$address = $_POST['address'];
+$cdId = $_POST['cd_id'];
 
-submit_page("Form submitted successfully!", "bi-check-circle");
+$stmt = $db->prepare("
+    INSERT INTO orders (purchase_date, address, order_by, cd_id)
+    VALUES (NOW(), ?, ?, ?)
+");
+$stmt->execute([$address, $userId, $cdId]);
+
+  submit_page("Form submitted successfully!", "bi-check-circle");
+exit;  
+
 ?>
 
 <!DOCTYPE html>

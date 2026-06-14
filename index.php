@@ -89,9 +89,7 @@
   <h1 class="mb-4">Musics CD</h1>
 
   <a href="login-form.php" class="btn btn-primary btn-lg mb-3">Sign In</a>
-
   <h4 class="text-white">Haven't registered? Register now!</h4>
-
   <a href="registration-form.php" class="btn btn-info btn-lg">Register</a>
 </div>
 
@@ -100,12 +98,5 @@
   <p>&copy; 2026 CD Shop | Contact us at info@cdshop.com</p>
 </footer>
 
-</body>
-</html>
-
-<footer class="bg-dark text-white text-center p-3 mt-auto">
-  <p>&copy; 2026 CD Shop | Contact us at info@cdshop.com</p>
-</footer>
-</div>
 </body>
 </html>

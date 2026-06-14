@@ -1,88 +1,184 @@
 <?php
 require('header.php');
+
+
 if(isset($_POST['id'])){
   $id = $_POST['id'];
-
-
-
-  $stmt = $db->prepare();
-  $stmt->execute([":id"=>$id]);
+  $query_delete = "DELETE FROM types WHERE id = :id";
+  $stmt = $db->prepare($query_delete);
+  $stmt->execute([":id" => $id]);
 }
 
 $query = "SELECT * FROM types ORDER BY id ASC";
-
 $stmt = $db->prepare($query);
 $stmt->execute([]);
 $types = $stmt->fetchAll();
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Project</title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-    crossorigin="anonymous" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Formats & Types</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style type="text/css">
     body {
-      background: #f1f1f1;
+      background: #f4f6f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #333333;
     }
+    
     .merriweather {
-  font-family: "Merriweather", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
+      font-family: "Merriweather", serif;
+    }
+
+    .management-wrapper {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      background: linear-gradient(135deg, #330867 0%, #30cceb 100%);
+      padding: 30px;
+      color: #ffffff;
+    }
+
+    /* List Item Row Styles */
+    .type-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid #efefef;
+      transition: all 0.25s ease;
+    }
+
+    .type-item-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-item-row:hover {
+      background-color: #f8fafc;
+      transform: scale(1.01);
+    }
+
+    /* Dynamic ID Badge styling */
+    .id-badge {
+      background: #f1f3f7;
+      color: #6c757d;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    /* Action Trigger Buttons */
+    .action-btn {
+      color: #a0aec0;
+      border: none;
+      background: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    
+    .btn-edit:hover {
+      color: #30cceb;
+      background-color: rgba(48, 204, 235, 0.1);
+    }
+
+    .btn-delete:hover {
+      color: #dc3545;
+      background-color: rgba(220, 53, 69, 0.1);
+    }
+
+    .btn-add-custom {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      font-weight: 600;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-add-custom:hover {
+      background: #ffffff;
+      color: #330867;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 
 <body>
-  <div class="merriweather">
-   
-  
-  <div class="container mx-auto my-5" style="max-width: 450px;">
-    <div class="d-flex justify-content-between align-items-center mb-2">
-      <h1 class="h1">Manage Posts</h1>
-      <div class="text-end">
-        <a href="types-manage-add.php" class="btn btn-primary btn-sm">+ Add New Type</a>
-      </div>
-    </div>
-    <div class="card mb-2 p-3">
-      <table class="table table-striped table-hover table-bordered">
-        <thead>
-          <tr>
-            <th scope="col" width="70px">ID</th>
-            <th scope="col" width="380px">Type</th>
-          </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($types as $type): ?>
-                <tr>
-                    <th scope="row"><?= $type['id'] ?></th>
-                    <td><?= $type['name'] ?></td>
-                        
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-      </table>
-    </div>
-        <div class="text-center">
-        <a href="dashboard.php" class="btn btn-link btn-sm"><i class="bi bi-arrow-left"></i> Back to Dashboard</a>
+
+  <div class="container my-5" style="max-width: 550px;">
+    
+    <div class="management-wrapper">
+      
+      <div class="panel-header d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 mb-1 fw-bold merriweather">Manage Formats</h1>
+          <p class="small text-white-50 mb-0">Organize music store types & categories</p>
         </div>
- </div>
-</div>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
+        <a href="types-manage-add.php" class="btn btn-add-custom btn-sm py-2 px-3 rounded-pill">
+          <i class="bi bi-plus-lg me-1"></i> Add New
+        </a>
+      </div>
+
+      <div class="panel-body">
+        <?php if(count($types) > 0): ?>
+          <?php foreach ($types as $type): ?>
+            <div class="type-item-row">
+              <div class="d-flex align-items-center">
+                <span class="id-badge">#<?= htmlspecialchars($type['id']) ?></span>
+                <span class="fw-semibold text-dark fs-5"><?= htmlspecialchars($type['name']) ?></span>
+              </div>
+              
+              <div class="d-flex gap-1">
+                <a href="types-manage-edit.php?id=<?= $type['id'] ?>" class="action-btn btn-edit" title="Edit Category">
+                  <i class="bi bi-pencil-square"></i>
+                </a>
+                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this type?');" style="display:inline;">
+                  <input type="hidden" name="id" value="<?= $type['id'] ?>">
+                  <button type="submit" class="action-btn btn-delete" title="Delete Category">
+                    <i class="bi bi-trash3-fill"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <div class="p-5 text-center text-muted">
+            <i class="bi bi-folder-x fs-1 d-block mb-2 text-black-50"></i>
+            No formats found. Click "Add New" to begin.
+          </div>
+        <?php endif; ?>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="dashboard.php" class="btn btn-link btn-sm text-secondary text-decoration-none fw-semibold">
+        <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
+      </a>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

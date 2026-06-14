@@ -52,34 +52,50 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
-    <style type="text/css">
+     <style type="text/css">
       body {
-        background: #f1f1f1;
+        background: #fadf86;
       }
+      .merriweather {
+        font-family: "Merriweather", serif;
+      }
+     
     </style>
   </head>
   <body>
-    <div class="container mx-auto my-5" style="max-width: 700px;">
-      <div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="container merriweather mx-auto my-5" style="max-width: 700px;">
+      <div class="d-flex justify-content-center align-items-center mb-4">
         <h1 class="h1">Edit CD Info</h1>
       </div>
-      <div class="card mb-2 p-4">
-        <form method="POST">
-          <div class="mb-3">
-            <div class="row">
-              <div class="">
-                <label for="cd_image" class="form-label">CD Image</label>
-                <input type="text" class="form-control" id="username" name="cd_image" value="<?= $cd['cd_image'] ?>" />
+
+      <form method="POST">
+        <div class="row g-4 d-flex justify-content-center">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            
+            <div class="card p-3" style="width: 30rem; height: 38rem;">
+              <h1>
+              <div class="" style="margin:50px;">
+                <label for="cd_image" class="form-label fw-bold small"><i class="bi bi-image"></i> CD Image URL</label>
+                <input type="text" class="form-control" name="cd_image"  value="<?= $cd['cd_image'] ?>" />
               </div>
-              <div class="">
-                <label for="cd_name" class="form-label">CD Name</label>
+            </h1>
+
+              <div class="card-body d-flex flex-column justify-content-between"> 
+                <div>
+                  <h1 class="card-title h4 mb-3">
+                    <label for="cd_price" class="form-label fw-bold small d-block"><i class="bi bi-tag-fill"></i> Cd Price</label>
+                    <input type="text" class="form-control" name="cd_price" value="<?= $cd['price'] ?>" />
+                  </h1>
+                  
+                  <h1 class="card-title h4 mb-3">
+                      <label for="cd_name" class="form-label fw-bold small d-block">CD Name</label>
              <input type="text" class="form-control" name="cd_name" value="<?= $cd['name'] ?>" />
-              </div>
-               
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="artist_name" class="form-label">Artist</label>
+                  </h1>
+                
+                  <div class="card-text mb-3">
+                    <div class="row g-2">
+                      <div class="col-6">
+                           <label for="artist_name" class="form-label">Artist</label>
          <select id="artist_name" name="artist_name" class="form-select" >
   <option value="">-- Select Artist --</option>
   <?php foreach ($artists as $artist): ?>
@@ -88,10 +104,10 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
     </option>
   <?php endforeach; ?>
 </select>
-</div>
-
-<div class="mb-3">
-    <label for="type_name" class="form-label">Type</label>
+                      </div>
+                      
+                      <div class="col-6">
+                      <label for="type_name" class="form-label">Type</label>
     <select id="type_name" name="type_name" class="form-select" required>
       <option value="">-- Select Type --</option>
       <?php foreach ($types as $type): ?>
@@ -100,28 +116,34 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
         </option>
       <?php endforeach; ?>
     </select>
-</div>
-            <input type="hidden" name="id" value="<?= $id ?>">
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Update</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </p>
+                <div class="text-end mt-auto">
+                  <button type="submit" class="btn btn-warning w-100">Update</button>
+                </div>
+
+              </div>
+            </div>
+
           </div>
-        </form>
-      </div>
-      <div class="text-center">
-        <a href="cd-manage.php" class="btn btn-link btn-sm"
-          ><i class="bi bi-arrow-left"></i> Back to Main Page</a
-        >
+        </div>
+      </form>
+
+      <div class="text-center mt-4">
+        <a href="cd-manage.php" class="btn btn-link btn-sm text-decoration-none">
+          <i class="bi bi-arrow-left"></i> Back to CD
+        </a>
       </div>
     </div>
-
+       
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    
-</body>
-
-</html>
   </body>
 </html>
+  

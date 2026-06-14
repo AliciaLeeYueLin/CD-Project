@@ -86,6 +86,9 @@ body{
 }
 </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
 </head>
 <body class="bg-light">
 <div class="container py-5">
@@ -97,8 +100,8 @@ body{
                 <div class="order-header text-center">
                     <h1>Confirm Your Order</h1>
                     <p class="mb-0">Review your information before checkout</p>
-                </div>
-
+                    
+            </div>
                 <div class="card-body p-4">
 
                     <div class="cd-preview mb-4">
@@ -141,18 +144,18 @@ body{
 
                     <form method="POST" action="order-success.php">
                         <input type="hidden" name="cd_id" value="<?= $cdId; ?>">
-\                        <div class="mb-4">
+                         <div class="mb-4">
                             <label class="form-label fw-bold">Username</label>
                             <input type="text"
                                    class="form-control"
-                                   value="<?php$user['username']; ?>"
+                                   value="<?= $user['username']; ?>"
                                    readonly>
                         </div>
                         <div class="mb-4">
                             <label class="form-label fw-bold">Phone Number</label>
                             <input type="text"
                                    class="form-control"
-                                   value="<? $user['phone_number']; ?>"
+                                   value="<?= $user['phone_number']; ?>"
                                    readonly>
                         </div>
 
@@ -211,6 +214,9 @@ body{
                             <button type="submit" class="btn btn-success btn-lg">
                                 Submit Order
                             </button>
+                            
+
+
                         </div>
 
                     </form>
@@ -221,6 +227,11 @@ body{
         </div>
     </div>
 </div>
-
+<div class="d-flex flex-column justify-content-center align-items-center">
+<a href="cd-manage.php" type="button" class="btn btn-danger rounded-circle d-inline-flex align-items-center justify-content-center " style="width: 40px; height: 40px;">
+<i class="bi bi-bag-x"></i>
+</a>
+ <div class="tex-align-center">Cancel</div>
+              </div>
 </body>
 </html>
