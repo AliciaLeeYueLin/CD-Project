@@ -399,16 +399,16 @@ section {
             <h1 class="text-center mt-5 d-flex justify-content-center align-items-center merriweather" style="font-size:50px;">- Top tier of The Month -</h1>
             <div class="row text-center mt-5">
               <div class="col-md-4">
-                <h2>300+</h2>
+                <h2>500+</h2>
                 <p>Albums Available</p>
               </div>
               <div class="col-md-4">
-                <h2>110+</h2>
+                <h2>130+</h2>
                 <p>Artists</p>
               </div>
               <div class="col-md-4">
                 <h2>1000+</h2>
-                <p>Happy Customers</p>
+                <p>Customers</p>
               </div>
             </div>
  
@@ -645,7 +645,7 @@ section {
     <h4 id="clock" class="text-center my-4"></h4>
 
     <div class="heros mt-5">
-       <h1 class="text-center mb-4">New Releases</h1>
+       <h1 class="text-center mb-4">Coming Soon</h1>
         <div class="carousel p-2">
             <button id="prevBtn" class="arrow arrow-left"><i class="bi bi-chevron-left"></i></button>
 

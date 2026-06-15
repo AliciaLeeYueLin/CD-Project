@@ -2,7 +2,12 @@
 session_start();
 
 $db = new PDO("mysql:host=localhost;dbname=project", "root", "");
-
+if(isset($_POST['id'])){
+  $id = $_POST['id'];
+  $query_delete = "DELETE FROM cart WHERE id = :id";
+  $stmt = $db->prepare($query_delete);
+  $stmt->execute([":id" => $id]);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cd_id'])) {
     $cd_id = $_POST['cd_id'];
@@ -50,6 +55,11 @@ $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
          border-bottom: 1px solid #eee;
           padding: 15px 0; 
         }
+        .btn-delete:hover {
+      color: #dc3545;
+      background-color: rgba(220, 53, 69, 0.1);
+    }
+
   </style>
 </head>
 <body>
@@ -82,9 +92,18 @@ $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h5>Qty: <?= $item['cd_quantity']; ?></h5>
                 </div>
             
-               <div class="col-2 text-center">
-                    <a href="order-form.php?id=<?= $item['cd_id']; ?>&cart_id=<?= $item['cart_item_id']; ?>" class="btn btn-warning">Buy Now</a>         
+               <div class="col-1 text-center">
+                    <a href="order-form.php?id=<?= $item['cd_id']; ?>&cart_id=<?= $item['cart_item_id']; ?>" class="btn btn-warning">Buy</a>         
                 </div>
+
+               <div class="col-1 text-center">
+    <form method="POST" onsubmit="return confirm('Are you sure you want to delete this CD from cart?');">
+        <input type="hidden" name="id" value="<?= $item['cart_item_id'] ?>">
+        <button type="submit" class="btn btn-link text-danger p-0">
+            <i class="bi bi-trash3-fill"></i>
+        </button>
+    </form>
+</div>
 </div>
         <?php endforeach; ?>
         </form>

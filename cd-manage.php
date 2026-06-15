@@ -47,7 +47,8 @@ FROM project.cd
 LEFT JOIN artists 
        ON artists.id = cd.artist_id
 LEFT JOIN types 
-       ON types.id = cd.type_id;";
+       ON types.id = cd.type_id
+       ORDER BY cd.id DESC;";
 $stmt = $db->prepare($query);
 $stmt->execute([]);
 }
@@ -365,10 +366,16 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
 
                       <a href="index.php">Home</a>
                       <a href="dashboard.php">Dashboard</a>
+                       <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === "user"): ?>
                       <a href="order-history.php">Order History</a>
+                      <a href="cart-manage.php">Shopping Cart</a>
+                       <?php endif; ?>
+                       <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === "admin"): ?>
                       <a href="order-manage.php">Order Manage</a>
                       <a href="types-manage.php">Type Manage</a>
                       <a href="artist-manage.php">Artist Manage</a>
+                      <a href="user-manage.php">User Manage</a>
+                      <?php endif; ?>
                       <a href="logout.php">Logout</a>
 
                     </div>
@@ -400,7 +407,7 @@ function closeNav() {
   <div class="container-fluid content-container">
     <div class="row g-4 playfair-display d-flex justify-content-center content" style="margin-top:80px;">
       <?php foreach($cd as $cds): ?>
-    <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
+    <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center mb-5">
       <div class="card" style="width: 21rem; height:44rem;">
           <img class="card-img-top d-flex justify-content-center" 
                src="<?= $cds['cd_image'] ?>" 
