@@ -1,12 +1,12 @@
-<?php 
-require('header.php');
+<?php
+require('header.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CD Shop</title>
      <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
@@ -16,6 +16,7 @@ require('header.php');
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body{
           padding-top: 60px;
@@ -257,7 +258,6 @@ margin: 0;
   text-shadow: 2px 2px 3px black;
 }
 
-
 .playing-bars {
   display: none;
   justify-content: center;
@@ -363,6 +363,10 @@ section {
     padding: 60px 0;
     width: 100%;
 }
+
+.btn-danger{
+  width:105px;
+} 
     </style>
 </head>
 <body>
@@ -378,40 +382,29 @@ section {
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-white" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="dashboard.php">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="cd-manage.php">Shop</a></li>
                     
                     <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == "user"): ?>
                         <li class="nav-item"><a class="nav-link text-white" href="order-history.php">Order History</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="cart-manage.php">Shopping Cart</a></li>
                     <?php endif; ?>
                     
                     <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == "admin"): ?>
                         <li class="nav-item"><a class="nav-link text-white" href="order-manage.php">Order Manage</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="types-manage.php">Type Manage</a></li>
                         <li class="nav-item"><a class="nav-link text-white" href="artist-manage.php">Artist Manage</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="user-manage.php">User Manage</a></li>
                     <?php endif; ?>
-                    
-                    <li class="nav-item"><a class="nav-link text-white btn btn-sm btn-danger ms-lg-2" href="logout.php">Log Out</a></li>
+                    <li class="nav-item"><a class="nav-link text-white btn btn-danger " href="logout.php">Log Out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     
     <section>
-            <h1 class="text-center mt-5 d-flex justify-content-center align-items-center merriweather" style="font-size:50px;">- Top tier of The Month -</h1>
-            <div class="row text-center mt-5">
-              <div class="col-md-4">
-                <h2>500+</h2>
-                <p>Albums Available</p>
-              </div>
-              <div class="col-md-4">
-                <h2>130+</h2>
-                <p>Artists</p>
-              </div>
-              <div class="col-md-4">
-                <h2>1000+</h2>
-                <p>Customers</p>
-              </div>
-            </div>
- 
+      
+            <h1 class="text-center mt-3 d-flex justify-content-center align-items-center merriweather" style="font-size:50px;">- Top tier of The Month -</h1>
+          
   <div class="row g-4 merriweather mt-4">
     <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center">
       <div class="flex-column d-flex " style="margin-top: 50px;">
@@ -430,36 +423,7 @@ section {
           "><h5>Click to listen</h5></span>
           <div class="inner1"></div>
            <audio id="mySound1" src="image/I Thought I Saw Your Face Today.mp3"></audio>
-               <script>
-                  document.addEventListener("DOMContentLoaded", function () {
-                      const card = document.getElementById("cd");
-                      const sound = document.getElementById("mySound1");
-                      let isPlaying = false;
-
-                card.addEventListener("click", () => {
-                    if (!isPlaying) {
-                        
-                        sound.currentTime = 0;
-                        sound.play();
-                        isPlaying = true;
-
-            
-                    sound.addEventListener("timeupdate", function stopAt45() {
-                        if (sound.currentTime >= 50) {
-                            sound.pause();
-                            isPlaying = false;
-                            sound.removeEventListener("timeupdate", stopAt45);
-                        }
-                    });
-                } else {
-            
-            sound.pause();
-            sound.currentTime = 0;
-            isPlaying = false;
-        }
-    });
-});
-</script>
+              
           </div>
         
         <h3 class="d-flex justify-content-center mt-3">I thought I Saw Your Face Today</h3>
@@ -490,36 +454,7 @@ section {
           "><h5>Click to listen</h5></span>
           <div class="inner2"></div>
           <audio id="mySound2" src="image/NFR.mp3"></audio>
-               <script>
-                  document.addEventListener("DOMContentLoaded", function () {
-                      const card = document.getElementById("cd2");
-                      const sound = document.getElementById("mySound2");
-                      let isPlaying = false;
-
-                card.addEventListener("click", () => {
-                    if (!isPlaying) {
-                        
-                        sound.currentTime = 50;
-                        sound.play();
-                        isPlaying = true;
-
             
-                    sound.addEventListener("timeupdate", function stopAt45() {
-                        if (sound.currentTime >= 100) {
-                            sound.pause();
-                            isPlaying = false;
-                            sound.removeEventListener("timeupdate", stopAt45);
-                        }
-                    });
-                } else {
-            
-            sound.pause();
-            sound.currentTime = 0;
-            isPlaying = false;
-        }
-    });
-});
-</script>
 
         </div>
         
@@ -552,36 +487,57 @@ section {
           "><h5>Click to listen</h5></span>
           <div class="inner1"></div>
           <audio id="mySound3" src="image/If We Have Each Other.mp3"></audio>
-               <script>
-                  document.addEventListener("DOMContentLoaded", function () {
-                      const card = document.getElementById("cd3");
-                      const sound = document.getElementById("mySound3");
-                      let isPlaying = false;
+   
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const sounds = [
+        document.getElementById("mySound1"),
+        document.getElementById("mySound2"),
+        document.getElementById("mySound3")
+    ];
 
-                card.addEventListener("click", () => {
-                    if (!isPlaying) {
-                        
-                        sound.currentTime = 24;
-                        sound.play();
-                        isPlaying = true;
+    function stopAllExcept(currentSound) {
+        sounds.forEach(sound => {
+            if (sound !== currentSound) {
+                sound.pause();
+                sound.currentTime = 0;
+            }
+        });
+    }
 
-            
-                    sound.addEventListener("timeupdate", function stopAt45() {
-                        if (sound.currentTime >= 74) {
-                            sound.pause();
-                            isPlaying = false;
-                            sound.removeEventListener("timeupdate", stopAt45);
-                        }
-                    });
-                } else {
-            
-            sound.pause();
-            sound.currentTime = 0;
-            isPlaying = false;
-        }
-    });
+    function setupCard(cardId, sound, startTime, endTime) {
+        const card = document.getElementById(cardId);
+        let isPlaying = false;
+
+        card.addEventListener("click", () => {
+            if (!isPlaying) {
+                stopAllExcept(sound); // stop others sound
+                sound.currentTime = startTime;
+                sound.play();
+                isPlaying = true;
+
+                sound.addEventListener("timeupdate", function stopAtEnd() {
+                    if (sound.currentTime >= endTime) {
+                        sound.pause();
+                        isPlaying = false;
+                        sound.removeEventListener("timeupdate", stopAtEnd);
+                    }
+                });
+            } else {
+                sound.pause();
+                sound.currentTime = 0;
+                isPlaying = false;
+            }
+        });
+    }
+
+   
+    setupCard("cd", sounds[0], 0, 50);
+    setupCard("cd2", sounds[1], 50, 100);
+    setupCard("cd3", sounds[2], 24, 74);
 });
 </script>
+
         </div>
         <h2 class="d-flex justify-content-center mt-3">Narrated For You</h2>
         <h4 class="d-flex justify-content-center mt-3">Alec Benjamin</h4>
@@ -618,6 +574,30 @@ section {
         Whether you're a fan of pop, rock, jazz, or indie, our shelves are packed with music 
         that inspires and connects. Discover your next favorite album today!
       </p>
+      <section>
+    <div class="board row g-4 text-center mt-2 p-3">
+   <div class="col-md-4 ">
+    <div class="small-card d-flex flex-column">
+      <h2 class="total-number">500+</h2>
+      <h4 class="title-label">Albums Available</h4>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="small-card d-flex flex-column">
+      <h2 class="total-number">130+</h2>
+      <h4 class="title-label">Artists</h4>
+    </div>
+  </div>
+  
+  <div class="col-md-4 ">
+    <div class="small-card  d-flex flex-column">
+      <h2 class="total-number">1,000+</h2>
+      <h4 class="title-label">Customers</h4>
+    </div>
+  </div>
+</div>
+</section>
       <div class="mt-2">
           <button id="review" class="btn btn-outline-primary mt-3" style="padding:5px 10px; font-size:14px;">
             See What Our Customers Say ⭐
@@ -638,14 +618,39 @@ section {
 <section class="py-5">
     <h1 class="text-center">Artist Spotlight</h1>
     <div class="card mx-auto p-4 my-4" style="max-width:700px;">
-      <h3>The Weeknd</h3>
+      <h3>The Weekend</h3>
       <p class="mb-0">One of the most streamed artists worldwide with multiple platinum albums.</p>
+    </div>
+    
+    <div class="card mx-auto p-4 my-4" style="max-width:700px;">
+      <h3>Taylor Swift</h3>
+      <p class="mb-0">Holds the record for the most-streamed artist in a single day and first female to hit 100 million monthly listeners.</p>
+    </div>
+
+    <div class="card mx-auto p-4 my-4" style="max-width:700px;">
+      <h3>Drake</h3>
+      <p class="mb-0"> The most-streamed artist of all time globally across total cumulative catalog plays.</p>
+    </div>
+
+    <div class="card mx-auto p-4 my-4" style="max-width:700px;">
+      <h3>Bad Bunny</h3>
+      <p class="mb-0">Transcended language barriers to become the world's absolute #1 most-streamed artist for three consecutive years.</p>
+    </div>
+
+    <div class="card mx-auto p-4 my-4" style="max-width:700px;">
+      <h3>Billie Eilish</h3>
+      <p class="mb-0">One of the youngest artists ever to clear 100 million monthly listeners, constantly trading top spots with The Weeknd.
+    </div>
+
+    <div class="card mx-auto p-4 my-4" style="max-width:700px;">
+      <h3>Ed Sheeran</h3> 
+      <p class="mb-0">Wrote "Shape of You", the first track to cross 3 billion streams, and anchors the top tier of worldwide radio rotation.</p> 
     </div>
 
     <h4 id="clock" class="text-center my-4"></h4>
 
     <div class="heros mt-5">
-       <h1 class="text-center mb-4">Coming Soon</h1>
+       <h1 class="text-center mb-4">Album Coming Soon</h1>
         <div class="carousel p-2">
             <button id="prevBtn" class="arrow arrow-left"><i class="bi bi-chevron-left"></i></button>
 
@@ -678,19 +683,44 @@ section {
 </div>
 
 <script>
-  document.getElementById("startText").addEventListener("click", function() {
-    document.getElementById("cd").classList.toggle("animate"); 
-  });
-  document.getElementById("startText2").addEventListener("click", function() {
-    document.getElementById("cd2").classList.toggle("animate"); 
-  });
-  document.getElementById("startText3").addEventListener("click", function() {
-    document.getElementById("cd3").classList.toggle("animate"); 
-  });
+document.addEventListener("DOMContentLoaded", function () {
+    const cds = [
+        document.getElementById("cd"),
+        document.getElementById("cd2"),
+        document.getElementById("cd3")
+    ];
+
+    function stopAllAnimations() {
+        cds.forEach(cd => cd.classList.remove("animate"));
+    }
+
+    function setupClick(startTextId, cdId) {
+        const startText = document.getElementById(startTextId);
+        const cd = document.getElementById(cdId);
+
+        startText.addEventListener("click", function() {
+            if (cd.classList.contains("animate")) {
+                cd.classList.remove("animate");
+            } else {
+               
+                stopAllAnimations();
+                cd.classList.add("animate");
+            }
+        });
+    }
+
+    setupClick("startText", "cd");
+    setupClick("startText2", "cd2");
+    setupClick("startText3", "cd3");
+});
+</script>
+
+<script>
   document.getElementById("review").addEventListener("click", function() {
     const reviews = document.getElementById("reviews");
     reviews.style.display = reviews.style.display === "none" ? "block" : "none";
   });
+ /* condition ? valueIfTrue : valueIfFalse */
   
   setInterval(()=>{
     document.getElementById("clock").innerHTML = new Date().toLocaleTimeString();

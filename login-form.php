@@ -104,12 +104,12 @@
             
             <div class="mb-3">
               <label for="username" class="form-label small tracking-wider fw-bold">Username</label>
-              <input type="text" class="form-control form-control-lg" id="username" name="username" required autocomplete="username">
+              <input type="text" class="form-control form-control-lg" id="username" name="username" required >
             </div>
             
             <div class="mb-3">
               <label for="password" class="form-label small tracking-wider fw-bold">Password</label>
-              <input type="password" class="form-control form-control-lg" id="password" name="password" required autocomplete="current-password">
+              <input type="password" class="form-control form-control-lg" id="password" name="password" required >
             </div>
             
             <div class="d-grid mt-4">

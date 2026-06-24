@@ -87,7 +87,6 @@ function submit_page($message, $icon = "bi-check-circle") {
     exit;
 }
 $userId = $_SESSION['user']['id'];
-
 $address = $_POST['address'];
 $cdId = $_POST['cd_id'];
 

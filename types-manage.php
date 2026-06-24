@@ -35,10 +35,6 @@ $types = $stmt->fetchAll();
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: #333333;
     }
-    
-    .merriweather {
-      font-family: "Merriweather", serif;
-    }
 
     .management-wrapper {
       background: #ffffff;
@@ -49,12 +45,14 @@ $types = $stmt->fetchAll();
     }
 
     .panel-header {
-      background: linear-gradient(135deg, #330867 0%, #30cceb 100%);
+      background: linear-gradient(135deg, #fdf0cd 0%, #fadf86 50%, #eec12f 100%);
       padding: 30px;
-      color: #ffffff;
+      color: #fffdf6;
     }
 
-    /* List Item Row Styles */
+    .panel-header h1{
+      text-shadow:2px 2px 3px black;
+    }
     .type-item-row {
       display: flex;
       align-items: center;
@@ -75,8 +73,8 @@ $types = $stmt->fetchAll();
 
     
     .id-badge {
-      background: #f1f3f7;
-      color: #6c757d;
+      background: #fadf86;
+      color: #332700;
       font-weight: 700;
       font-size: 0.85rem;
       padding: 4px 10px;
@@ -105,36 +103,37 @@ $types = $stmt->fetchAll();
       background-color: rgba(220, 53, 69, 0.1);
     }
 
-    .btn-add-custom {
-      background: rgba(255, 255, 255, 0.2);
+  .btn-add-custom {
+      background: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #ffffff;
+      color: rgb(0, 0, 0) ;
       font-weight: 600;
-      backdrop-filter: blur(5px);
       transition: all 0.3s ease;
     }
 
     .btn-add-custom:hover {
-      background: #ffffff;
-      color: #330867;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background:#330867;
+      color:    #eec12f;
+      box-shadow: 0 4px 15px rgba(115, 56, 0, 0.88);
     }
   </style>
 </head>
 
 <body>
-
   <div class="container my-5" style="max-width: 550px;">
-    
+    <div class="text-end mt-4">
+      <a href="dashboard.php" class="btn btn-link btn-sm text-secondary text-decoration-none fw-semibold">
+        <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
+      </a>
+    </div>
     <div class="management-wrapper">
-      
+     
       <div class="panel-header d-flex justify-content-between align-items-center">
         <div>
           <h1 class="h3 mb-1 fw-bold merriweather">Manage Formats</h1>
-          <p class="small text-white-50 mb-0">Organize music store types & categories</p>
         </div>
         <a href="types-manage-add.php" class="btn btn-add-custom btn-sm py-2 px-3 rounded-pill">
-          <i class="bi bi-plus-lg me-1"></i> Add New
+          <i class="bi bi-plus-lg me-1"></i> Add New Type
         </a>
       </div>
 
@@ -148,9 +147,7 @@ $types = $stmt->fetchAll();
               </div>
               
               <div class="d-flex gap-1">
-                <a href="types-manage-edit.php?id=<?= $type['id'] ?>" class="action-btn btn-edit" title="Edit Category">
-                  <i class="bi bi-pencil-square"></i>
-                </a>
+                
                 <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this type?');" style="display:inline;">
                   <input type="hidden" name="id" value="<?= $type['id'] ?>">
                   <button type="submit" class="action-btn btn-delete" title="Delete Category">
@@ -170,11 +167,7 @@ $types = $stmt->fetchAll();
 
     </div>
 
-    <div class="text-center mt-4">
-      <a href="dashboard.php" class="btn btn-link btn-sm text-secondary text-decoration-none fw-semibold">
-        <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
-      </a>
-    </div>
+   
 
   </div>
 

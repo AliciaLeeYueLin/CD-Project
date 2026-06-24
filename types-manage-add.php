@@ -29,6 +29,7 @@ function error_page($message){
         opacity: 0.7;              
         padding: 20px;         
         box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2); 
+        }
     .card-content {
         text-align: center;
     }
@@ -47,16 +48,16 @@ function error_page($message){
         margin-top: 12px;
         padding: 6px 12px;
         text-decoration: none;
-    
+    }
 
 </style>
 </head>
 <body>
     <div class="card">
         <div class="card-content">
-        <h1>' . htmlspecialchars($message) . '</h1>
+        <h1>' . ($message) . '</h1>
         <hr>
-<a href="login-form.php" class="btn-back">OK</a>
+<a href="types-manage.php" class="btn-back">OK</a>
 </div>
 </div>
 </body>
@@ -75,6 +76,8 @@ if(isset($_POST['name']) ){
     error_page ("New type added!");
 
     header("Location: types-manage.php");
+
+    exit;
 }
 
 ?>
@@ -93,9 +96,69 @@ if(isset($_POST['name']) ){
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     />
     <style type="text/css">
-      body {
-        background: #F1F1F1;
+      body{
+        background: linear-gradient(135deg, #fdf0cd 0%, #fadf86 50%, #eec12f 100%) !important;  
+        min-height: 100vh;
+        font-family: "Merriweather", serif;
+        display:flex;
+        align-items:center;
       }
+         .title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      color: #332700;
+      letter-spacing: 2px;
+      text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 4px solid #332700;
+      border-radius: 16px;          
+      
+    }
+    .form-label {
+      color: #4a3b00;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+    .form-control, .form-select {
+      border: 2px solid #d4c185;
+      border-radius: 8px;
+      padding: 0.6rem 0.75rem;
+      background-color: #fffdf6;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #332700;
+      box-shadow: 0 0 0 0.25rem rgba(238, 193, 47, 0.25);
+      background-color: #ffffff;
+    }
+    .btn-add {
+      background: #332700;
+      color: #fadf86;
+      border: 2px solid #332700;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 0.75rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+    }
+    .btn-add:hover {
+      background: #fadf86;
+      color: #332700;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(51, 39, 0, 0.2);
+    }
+    .btn-link {
+      color: #5c4900;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn-link:hover {
+      color: #332700;
+      transform: translateX(-3px);
+    }
     </style>
   </head>
   <body>
@@ -111,12 +174,12 @@ if(isset($_POST['name']) ){
           </div>
         <input type="hidden" name="post_by" value="1">
           <div class="text-end">
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" class="btn btn-add btn-primary">Add</button>
           </div>
         </form>
       </div>
       <div class="text-center">
-        <a href="types-manage.php" class="btn btn-link btn-sm"
+        <a href="types-manage.php" class="btn btn-back btn-link btn-sm"
           ><i class="bi bi-arrow-left"></i> Back to Posts</a
         >
       </div>

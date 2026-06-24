@@ -1,9 +1,16 @@
 <?php
 require('header.php');
  $db = new PDO("mysql:host=localhost;dbname=project", "root", "");
- $search = $_GET['search'] ?? ''; 
+ $search = $_GET['search'] ?? '';
 
-if (!empty($search)) {
+if(isset($_POST['id'])){
+  $id = $_POST['id'];
+  $query_delete = "DELETE FROM cd WHERE id = :id";
+  $stmt = $db->prepare($query_delete);
+  $stmt->execute([":id" => $id]);
+}
+
+     if (!empty($search)) {
        $query = "SELECT 
         cd.id,
         cd.name AS cd_name,
@@ -23,8 +30,7 @@ if (!empty($search)) {
             WHEN cd.name LIKE :startsWith THEN 1
             WHEN artists.name LIKE :startsWith THEN 1
             WHEN types.name LIKE :startsWith THEN 1
-            ELSE 2
-        END,
+            ELSE 2;
         cd.name ASC";
     
     $stmt = $db->prepare($query);
@@ -52,9 +58,13 @@ LEFT JOIN types
 $stmt = $db->prepare($query);
 $stmt->execute([]);
 }
+
 $cd = $stmt->fetchAll();
+
 $typeStmt = $db->query("SELECT id, name FROM types");
 $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 ?>
@@ -84,13 +94,28 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 .card {
+  box-sizing: border-box; 
   border: 12px solid #000000;
   border-radius: 10px;          
   box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #ffffff;     
-  overflow: hidden;             
+  overflow: hidden;      
+  width: 100%;
+  max-width: 21rem; 
+  height: 44rem;        
 }
+
+@media (max-width: 576px) {
+  .card {
+    max-width: 16rem; 
+    height: 32rem; 
+    border-width: 2px; 
+    display:flex;
+    justify-content:end !important;
+  }
+}
+
 .buyyy a {
     width: 150px; 
     height: 40px ;
@@ -104,14 +129,14 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
 
 .buyyy a:hover {
     transform: scale(1.1);
-    background-color: #7fff76 !important;
-    color: black !important; 
+    background-color: #13900a !important;
+    color: white !important; 
 }
 
 .close-btn {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 10px;
   float: right;
   cursor: pointer;
 }
@@ -137,8 +162,6 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
   justify-content: center;
   gap: 10px;
   background-image: linear-gradient(to top, #dbe56c 0%, #daaf2d 100%);
-  border: solid 3px transparent;
-  background-clip: padding-box;
   box-shadow: 0px 0px 0px 3px #ffffff00;
   color: white;
   min-height: 43px;
@@ -149,6 +172,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
   transition: all .5s ease;
   
 }
+
 .edit a{
   text-decoration:none;
 }
@@ -173,20 +197,19 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
   position: fixed; 
   bottom: 30px;      
   right: 30px;      
-   background: linear-gradient(
+  background: linear-gradient(
         135deg,
         #eb9525,
         #fae360
     );
 
-    box-shadow:
-      0 10px 25px rgba(37,99,235,.4);
+  box-shadow:0 10px 25px rgba(37,99,235,.4);
   color: white;
   border: none;
   border-radius: 50%;
   width:60px;
   height:60px;
-  font-size: 16px;
+  font-size: 25px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
 }
@@ -204,7 +227,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
     color: #d4d480;
 }
 .sidebar {
-      height: 100%;
+   height: 100%;
       width: 0;
       position: fixed;
       top: 0;
@@ -228,22 +251,22 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
 
 
      .sidebar a:hover {
-  background: rgba(255, 255, 255, 0.81);
-  padding-left: 30px;
-}
-
+        background: rgba(255, 255, 255, 0.81);
+        padding-left: 30px;
+      }
 
     .sidebar .closebtn {
       position: absolute;
       top: 15px;
       right: 20px;
-      font-size: 30px;
-      color: white;
+      font-size: 20px;
+      color: black;
+      background:none;
     }
-.sidebar {
+/* .sidebar {
     width: 0;
     transition: width 0.3s ease;
-}
+} */
 
 .sidebar.sidebar-open {
     width: 250px;
@@ -254,18 +277,14 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 @media(max-width:768px){
-    #mySidebar {
-        font-size:12px;
-    }
+  #mySidebar.sidebar-open {
+     width: 150px; 
+  }
+  #mySidebar {
+     font-size: 12px;
+  }
 }
     
-
-    @media(max-width:768px){
-      #mySidebar{
-         width:100px;
-         font-size:12px;
-      }
-    }
     .openbtn {
       font-size: 20px;
       background-color: rgb(191, 149, 0);
@@ -282,6 +301,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
     .openbtn{
       width:30px;
       font-size:12px;
+      z-index:1050;
     }
     }
 
@@ -299,11 +319,6 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
 
     body.sidebar-open .content {
       justify-content: flex-end !important;
-    }
-
-    body.sidebar-open .content .col-lg-3 {
-      flex: 0 0 auto;
-      width: 33.333333%;
     }
 
  .search-form {
@@ -342,6 +357,21 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
         font-size: 14px;
     }
 }
+.action-btn {
+      color: #a0aec0;
+      border: none;
+      background: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    
+
+    .btn-delete:hover {
+      color: #dc3545;
+      background-color: rgba(220, 53, 69, 0.1);
+    }
     </style>
      <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -384,23 +414,24 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
         <input class="form-control me-2" type="search" name="search" placeholder="Search CDs / Artists / Types" aria-label="Search" value="<?= htmlspecialchars($search) ?>">
         <button class="btn" type="submit"><i class="bi bi-search"></i></button>
     </form>
-                </form>
             </div>
         </div>
       </div>
     </nav>
                 
    <script>
-function openNav() {
+    function openNav() {
   document.getElementById("mySidebar").classList.add("sidebar-open");
-  document.body.classList.add("sidebar-open");
+  if (window.innerWidth > 576) {
+    document.querySelector(".content-container").style.marginLeft = "250px";
+  }
 }
 
 function closeNav() {
   document.getElementById("mySidebar").classList.remove("sidebar-open");
-  document.body.classList.remove("sidebar-open");
-
+  document.querySelector(".content-container").style.marginLeft = "0";
 }
+
 </script>
    
    
@@ -408,7 +439,7 @@ function closeNav() {
     <div class="row g-4 playfair-display d-flex justify-content-center content" style="margin-top:80px;">
       <?php foreach($cd as $cds): ?>
     <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center mb-5">
-      <div class="card" style="width: 21rem; height:44rem;">
+      <div class="card" >
           <img class="card-img-top d-flex justify-content-center" 
                src="<?= $cds['cd_image'] ?>" 
                alt="Card image cap" width="200px">
@@ -443,6 +474,7 @@ function closeNav() {
     <?php endif; ?>
 </div>
               <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === "admin"): ?>
+                <div class="d-flex gap-1">
                 <div class="edit">
                 <a href="cd-manage-update.php?id=<?= $cds['id'] ?>">
                   <button class="btn-edit">
@@ -453,23 +485,32 @@ function closeNav() {
                   </button>
                 </a>
                 </div>
+                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this album?');" style="display:inline;">
+                  <input type="hidden" name="id" value="<?= $cds['id'] ?>">
+                  <button type="submit" class="action-btn btn-delete" title="Delete Category">
+                    <i class="bi bi-trash3-fill"></i>
+                  </button>
+                </form>
+                </div>
               <?php endif; ?>
-            
             </div>
+            
           </div>
         </div>
     <?php endforeach; ?>
   </div>
 </div>
-
+              <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === "admin"): ?>
 <a href="cd-manage-add.php">
  <button class="btn-corner">
   <i class="bi bi-plus"></i>
 </button>
 </a>
+  <?php endif; ?>
 <footer class="bg-dark text-white text-center p-3 mt-auto">
   <p>&copy; 2026 CD Shop | Contact us at info@cdshop.com</p>
 </footer>
 
+</section>
 </body>
 </html>

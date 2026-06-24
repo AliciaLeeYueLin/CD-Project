@@ -5,7 +5,7 @@ $db = new PDO("mysql:host=localhost;dbname=project", "root", "");
 
 //For User
 
-$userId = $_SESSION['user']['id'];
+$userId = $_SESSION['user']['id']; /*Get User ID */
 $userStmt = $db->prepare("SELECT *FROM users WHERE id = ?");
 $userStmt->execute([$userId]);
 $user = $userStmt->fetch(PDO::FETCH_ASSOC);

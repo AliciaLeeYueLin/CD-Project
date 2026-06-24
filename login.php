@@ -30,6 +30,7 @@ function error_page($message){
         opacity: 0.7;              
         padding: 20px;         
         box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2); 
+        }
     .card-content {
         text-align: center;
     }
@@ -48,7 +49,7 @@ function error_page($message){
         margin-top: 12px;
         padding: 6px 12px;
         text-decoration: none;
-    
+    }
 
 </style>
 </head>

@@ -40,7 +40,7 @@ $artists = $stmt->fetchAll();
       font-family: "Merriweather", serif;
     }
 
-    /* Modern Glassmorphism/Card UI Styling */
+  
     .management-wrapper {
       background: #ffffff;
       border-radius: 20px;
@@ -50,12 +50,15 @@ $artists = $stmt->fetchAll();
     }
 
     .panel-header {
-      background: linear-gradient(135deg, #330867 0%, #30cceb 100%);
+      background: linear-gradient(135deg, #fdf0cd 0%, #fadf86 50%, #eec12f 100%);
       padding: 30px;
       color: #ffffff;
+      
     }
-
-    /* List Item Row Styles */
+    .panel-header h1{
+      text-shadow:2px 2px 3px black;
+    }
+    
     .type-item-row {
       display: flex;
       align-items: center;
@@ -74,10 +77,10 @@ $artists = $stmt->fetchAll();
       transform: scale(1.01);
     }
 
-    /* Dynamic ID Badge styling */
+    
     .id-badge {
-      background: #f1f3f7;
-      color: #6c757d;
+      background: #fadf86;
+      color: #332700;
       font-weight: 700;
       font-size: 0.85rem;
       padding: 4px 10px;
@@ -85,7 +88,7 @@ $artists = $stmt->fetchAll();
       margin-right: 15px;
     }
 
-    /* Action Trigger Buttons */
+
     .action-btn {
       color: #a0aec0;
       border: none;
@@ -107,18 +110,17 @@ $artists = $stmt->fetchAll();
     }
 
     .btn-add-custom {
-      background: rgba(255, 255, 255, 0.2);
+      background: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #ffffff;
+      color: rgb(0, 0, 0) ;
       font-weight: 600;
-      backdrop-filter: blur(5px);
       transition: all 0.3s ease;
     }
 
     .btn-add-custom:hover {
-      background: #ffffff;
-      color: #330867;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background:#330867;
+      color:    #eec12f;
+      box-shadow: 0 4px 15px rgba(115, 56, 0, 0.88);
     }
   </style>
 </head>
@@ -126,16 +128,18 @@ $artists = $stmt->fetchAll();
 <body>
 
   <div class="container my-5" style="max-width: 550px;">
-    
+     <div class="text-end mt-4">
+      <a href="dashboard.php" class="btn btn-link btn-sm text-secondary text-decoration-none fw-semibold"><i class="bi bi-arrow-left me-1"></i> Back to Dashboard</a>
+    </div>
     <div class="management-wrapper">
       
       <div class="panel-header d-flex justify-content-between align-items-center">
         <div>
-          <h1 class="h3 mb-1 fw-bold merriweather">Manage Formats</h1>
-          <p class="small text-white-50 mb-0">Organize music store artists & categories</p>
+          <h1 class="h3 mb-1 fw-bold merriweather">Manage Artists</h1>
+        
         </div>
-        <a href="artists-manage-add.php" class="btn btn-add-custom btn-sm py-2 px-3 rounded-pill">
-          <i class="bi bi-plus-lg me-1"></i> Add New
+        <a href="artist-manage-add.php" class="btn btn-add-custom btn-sm py-2 px-3 rounded-pill">
+          <i class="bi bi-plus-lg me-1"></i> Add New Artist
         </a>
       </div>
 
@@ -149,10 +153,8 @@ $artists = $stmt->fetchAll();
               </div>
               
               <div class="d-flex gap-1">
-                <a href="artists-manage-edit.php?id=<?= $type['id'] ?>" class="action-btn btn-edit" title="Edit Category">
-                  <i class="bi bi-pencil-square"></i>
-                </a>
-                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this type?');" style="display:inline;">
+              
+                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this artist?');" style="display:inline;">
                   <input type="hidden" name="id" value="<?= $type['id'] ?>">
                   <button type="submit" class="action-btn btn-delete" title="Delete Category">
                     <i class="bi bi-trash3-fill"></i>
@@ -171,11 +173,7 @@ $artists = $stmt->fetchAll();
 
     </div>
 
-    <div class="text-center mt-4">
-      <a href="dashboard.php" class="btn btn-link btn-sm text-secondary text-decoration-none fw-semibold">
-        <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
-      </a>
-    </div>
+   
 
   </div>
 
