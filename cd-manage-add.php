@@ -139,11 +139,12 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
             <label for="cd_price" class="form-label fw-bold small">
               <i class="bi bi-tag-fill me-1"></i> CD Price
             </label>
-            <div class="group">
-              <span class="group-text" style="background: #eedfa4; border: 2px solid #d4c185; border-right: none; border-radius: 8px 0 0 8px; color: #332700; font-weight: bold;">$</span>
+            <div class="input-group">
+              <span class="input-group-text" style="background: #eedfa4; border: 2px solid #d4c185; border-right: none; border-radius: 8px 0 0 8px; color: #332700; font-weight: bold;">$</span>
               <input type="text" class="form-control" id="cd_price" name="cd_price" placeholder="0.00" style="border-radius: 0 8px 8px 0;" />
             </div>
           </div>
+            
                   
                   <h1 class="card-title h4 mb-3">
                     <label for="cd_name" class="form-label fw-bold small d-block"><i class="bi bi-disc"></i> Cd Name</label>
@@ -181,7 +182,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
                   </div>
                 </div>
                 </p>
-                <div class="text-end mt-auto">
+                <div class="text-end">
                   <button type="submit" class="btn btn-create w-100"><i class="bi bi-cloud-plus-fill"></i> ADD NEW CD</button>
                 </div>
 
