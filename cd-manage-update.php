@@ -120,7 +120,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
 
       <form method="POST">
-        <input type="hidden" name="id" value="<?= htmlspecialchars($cd['id']) ?>">
+        <input type="hidden" name="id" value="<?= $cd['id'] ?>">
 
         <div class="card p-4 p-md-5">
           
@@ -128,7 +128,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
             <label for="cd_image" class="form-label fw-bold small">
               <i class="bi bi-image-fill me-1"></i> CD Image URL
             </label>
-            <input type="text" class="form-control" id="cd_image" name="cd_image" value="<?= htmlspecialchars($cd['cd_image']) ?>"/>
+            <input type="text" class="form-control" id="cd_image" name="cd_image" value="<?= $cd['cd_image'] ?>"/>
           </div>
 
           <div class="mb-4">
@@ -137,7 +137,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
             </label>
             <div class="input-group">
               <span class="input-group-text" style="background: #eedfa4; border: 2px solid #d4c185; border-right: none; border-radius: 8px 0 0 8px; color: #332700; font-weight: bold;">$</span>
-              <input type="text" class="form-control" id="cd_price" name="cd_price" value="<?= htmlspecialchars($cd['price']) ?>" style="border-radius: 0 8px 8px 0;" />
+              <input type="text" class="form-control" id="cd_price" name="cd_price" value="<?= $cd['price'] ?>" style="border-radius: 0 8px 8px 0;" />
             </div>
           </div>
           
@@ -145,7 +145,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
             <label for="cd_name" class="form-label fw-bold small">
               <i class="bi bi-bookmark-heart-fill me-1"></i> CD Name
             </label>
-            <input type="text" class="form-control" id="cd_name" name="cd_name" value="<?= htmlspecialchars($cd['name']) ?>" placeholder="Album Title" />
+            <input type="text" class="form-control" id="cd_name" name="cd_name" value="<?= $cd['name'] ?>" placeholder="Album Title" />
           </div>
 
           <div class="mb-4">
@@ -163,7 +163,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
                   <option value="">-- Select --</option>
                   <?php foreach ($artists as $artist): ?>
                     <option value="<?= $artist['id'] ?>" <?= ($cd['artist_id'] == $artist['id']) ? 'selected' : '' ?>>
-                      <?= htmlspecialchars($artist['name']) ?>
+                      <?= $artist['name'] ?>
                     </option>
                   <?php endforeach; ?>
                 </select>
@@ -175,7 +175,7 @@ $types = $typeStmt->fetchAll(PDO::FETCH_ASSOC);
                   <option value="">-- Select --</option>
                   <?php foreach ($types as $type): ?>
                     <option value="<?= $type['id'] ?>" <?= ($cd['type_id'] == $type['id']) ? 'selected' : '' ?>>
-                      <?= htmlspecialchars($type['name']) ?>
+                      <?= $type['name'] ?>
                     </option>
                   <?php endforeach; ?>
                 </select>
